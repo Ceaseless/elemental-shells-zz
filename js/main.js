@@ -185,7 +185,8 @@ function update() {
 
   const hitzones = {};
   for (const comp of Object.keys(element.components)) hitzones[comp] = parseNonNegative($(`hz-${comp}`));
-  const finalValues = calculateFinalHitDamage(eleValues.components, quickReloadBox.checked, hitzones, parseNonNegative(defenseEl));
+  const applyQuickReload = fullBurstBox.checked ? false : quickReloadBox.checked;
+  const finalValues = calculateFinalHitDamage(eleValues.components, applyQuickReload, hitzones, parseNonNegative(defenseEl));
 
   renderElementalValues(eleValues);
   renderFinalPerHitDamage(finalValues);
