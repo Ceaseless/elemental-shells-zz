@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Elemental Shells Calculator (ZZ)</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<main>
+  <h1>Elemental Shells Calculator</h1>
+  <p class="lead">Calculates the elemental hit. Fixed hit is omitted.</p>
+  <div class="layout">
+    <div>
+      <section class="panel">
+        <h2>Weapon</h2>
+        <div class="grid">
+          <label class="field"><span>Weapon element</span><input id="weaponElement" type="number" min="0" step="1" value="0" inputmode="numeric"></label>
+          <label class="field"><span>Sigils</span><input id="sigils" type="number" min="0" step="1" value="0" inputmode="numeric"></label>
+          <label class="field"><span>Element type</span><select id="element"></select></label>
+        </div>
+      </section>
+      <section class="panel">
+        <h2>X Attack Up Skills</h2>
+        <div id="xau" class="grid"></div>
+      </section>
+      <section class="panel">
+        <h2>Shell</h2>
+        <div class="grid">
+          <label class="field"><span>Shell type</span><select id="shellType"></select></label>
+          <label class="field"><span>Shell level</span><select id="shellLevel"></select></label>
+          <label class="check"><input id="gRank" type="checkbox">G-Rank quest</label>
+          <label class="check"><input id="fullBurst" type="checkbox">Full-Burst</label>
+        </div>
+        <p class="derived">Shell mod <b id="shellModOut"></b> · Penalty <b id="penaltyOut"></b></p>
+      </section>
+      <section class="panel">
+        <h2>Multipliers</h2>
+        <div id="multipliers" class="grid"></div>
+      </section>
+    </div>
+    <div class="side">
+      <section class="panel result-panel" aria-live="polite">
+        <h2>Elemental values</h2>
+        <div id="results"></div>
+      </section>
+      <section class="panel" aria-live="polite">
+        <h2>Final damage</h2>
+        <div class="grid">
+          <label class="check"><input id="quickReload" type="checkbox">Quick-Reload</label>
+          <label class="field"><span>Defense</span><input id="defense" type="number" min="0" step="0.01" value="1" inputmode="decimal"></label>
+        </div>
+        <div id="hitzones" class="grid hitzones"></div>
+        <div id="finalResults"></div>
+      </section>
+      <!-- <section class="panel">
+        <h2>Notes / Credits</h2>
+        For Full-Burst, if the total number of hits would exceed 8 the game combines shells to keep the count at 8 (each shell is 2 hits: 1 elemental + 1 fixed)
+        <ul>
+          <li>5 Shells => 3 Normal shells + 1 Combined shell</li>
+          <li>6 Shells => 2 Normal shells + 2 Combined shells</li>
+          <li>7 Shells => 1 Normal shell + 3 Combined shells</li>
+          <li>8 Shells => 0 Normal shells + 4 Combined shells</li>
+        </ul>
+      </section> -->
+    </div>
+
+  </div>
+</main>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
