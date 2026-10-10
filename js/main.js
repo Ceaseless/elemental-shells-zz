@@ -133,7 +133,7 @@ function renderFinalPerHitDamage(f) {
   const ft = document.createElement("div");
   ft.className = "final-total";
   const fl = document.createElement("span");
-  fl.textContent = "Final elemental damage per hit";
+  fl.textContent = "Damage per elemental hit";
   const fn = document.createElement("strong");
   fn.textContent = `${fmt(f.final)} ${fullBurstBox.checked ? `(${fmt(f.combinedFinal)})` : ""}`;
   ft.append(fl, fn);

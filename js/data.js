@@ -33,7 +33,7 @@ export const MULTIPLIERS = [
   // Tenran: +0.02 per piece
   // Origin: +0.03 per piece
   // Only apply when using a gou line weapon
-  { id: "tenran", label: "Tenran/Origin multiplier", options: [1.0, 1.02, 1.04, 1.06, 1.08, 1.1, 1.03, 1.06, 1.09, 1.12, 1.15] }, // TODO: Split into groups
+  { id: "tenran", label: "Tenran/Origin pieces", options: [1.0, 1.02, 1.04, 1.06, 1.08, 1.1, 1.03, 1.06, 1.09, 1.12, 1.15] }, // TODO: Split into groups
   { id: "elemAtk", label: "Elemental Attack", options: [1.0, 1.1] },
   { id: "furious", label: "Furious", options: [1.0, 1.05, 1.1, 1.2] },
   {

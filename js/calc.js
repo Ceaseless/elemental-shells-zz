@@ -40,7 +40,8 @@ export function calculateElementalValues(i) {
       internal = floor(internal * m);
     }
  
-    const multipliers = xau * i.drug * i.tenran * i.elemAttack * i.furious; // TODO: Furious 1 bug -> Game loads 1.04 instead of 1.05
+    // Furious 1 bug -> Game loads 1.04 instead of 1.05
+    const multipliers = xau * i.drug * i.tenran * i.elemAttack * i.furious === 1.05 ? 1.04 : i.furious; 
     const transcended = element === transcendTarget;
     const transcend = transcended ? i.transcend : 1;
 
