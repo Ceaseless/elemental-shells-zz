@@ -99,13 +99,14 @@ function renderHitzones() {
 function renderElementalValues(r) {
   results.replaceChildren();
   const ul = document.createElement("ul");
+  const isCombo = r.components.length > 1;
   for (const p of r.components) {
     const li = document.createElement("li");
     const name = document.createElement("span");
     name.textContent = `${p.element} `;
     const small = document.createElement("small");
     const comboText = `×${fmtMultipliers(p.comboMod)}`
-    small.textContent = `${element.combo ? comboText : ""} · internal ${p.internal}${p.transcend > 1 ? " · transcend" : ""}`;
+    small.textContent = `${isCombo ? comboText : ""} · internal ${p.internal}${p.transcend > 1 ? " · transcend" : ""}`;
     name.appendChild(small);
     const val = document.createElement("b");
     val.textContent = `${fmt(p.value)} ${fullBurstBox.checked ? `(${fmt(p.combinedValue)})` : ""}`;
