@@ -11,7 +11,7 @@ const $ = (id) => {
   return el;
 };
 
-// Strip trailing zeroes
+// 1 decimnal, strip trailing zeroes
 const fmt = (n) => n.toFixed(1).replace(/\.0$/, "");
 // At most 2 decimals
 const fmtMultipliers = (n) => String(Number(n.toFixed(2)));

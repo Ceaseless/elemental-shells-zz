@@ -77,6 +77,11 @@
       margin: 0 0 12px;
   }
 
+  .panel h3 {
+      font-size: 0.8rem;
+      margin: 10px 0 10px;
+  }
+
   .grid {
       display: grid;
       gap: 12px;
