@@ -48,12 +48,13 @@
         <h2>Final damage</h2>
         <div class="grid">
           <label class="check"><input id="quickReload" type="checkbox">Quick-Reload</label>
+          <label class="field"><span>Shell count</span><input id="shellCount" type="number" min="1" max="8" step="1" value="1" inputmode="numeric"></label>
           <label class="field"><span>Defense</span><input id="defense" type="number" min="0" step="0.01" value="1" inputmode="decimal"></label>
         </div>
         <div id="hitzones" class="grid hitzones"></div>
         <div id="finalResults"></div>
       </section>
-      <section class="panel">
+      <section class="panel" id="notes">
         <h2>Notes</h2>
         <span>Each shell is 2 hits: 1 elemental + 1 fixed</span><br>
         <span>Tenran/Origin multiplier only applies while using a Gou-line weapon</span><br>

@@ -1,4 +1,4 @@
-import { calculateElementalValues, calculateFinalHitDamage } from "./calc.js";
+import { calculateElementalValues, calculateFinalHitDamage, getPerShellDamage } from "./calc.js";
 import {
   ALL_ELEMENTS, COMBOS, SINGLES, MULTIPLIERS, X_ATTACK_UP_OPTIONS,
   SHELL_TYPES, SHELL_LEVELS, getShellMod, getPenalty,
@@ -45,6 +45,7 @@ const elementSel = $("element");
 const xauBox = $("xau");
 const multBox = $("multipliers");
 const results = $("results");
+const shellCount = $("shellCount");
 const defenseEl = $("defense");
 const hitzoneBox = $("hitzones");
 const shellTypeSel = $("shellType");
@@ -135,10 +136,29 @@ function renderFinalPerHitDamage(f) {
   ft.className = "final-total";
   const fl = document.createElement("span");
   fl.textContent = "Damage per elemental hit";
-  const fn = document.createElement("strong");
-  fn.textContent = `${fmt(f.final)} ${fullBurstBox.checked ? `(${fmt(f.combinedFinal)})` : ""}`;
-  ft.append(fl, fn);
+
+  if(fullBurstBox.checked) {
+    const ul = document.createElement("ul");
+    const perShellDamage = getPerShellDamage(f, parseNonNegative(shellCount,true));
+    for (let i = 0; i < perShellDamage.length; i++) {
+      const li = document.createElement("li");
+      const name = document.createElement("span");
+      name.textContent = `Hit ${i+1}`;
+      const val = document.createElement("b");
+      val.textContent = `${perShellDamage[i]}`;
+      li.append(name, val);
+      ul.appendChild(li);
+      ft.append(fl, ul);
+    } 
+  }
+  else {
+    const fn = document.createElement("strong");
+    fn.textContent = `${fmt(f.final)} ${fullBurstBox.checked ? `(${fmt(f.combinedFinal)})` : ""}`;
+    ft.append(fl, fn);    
+  }
   finalResults.appendChild(ft);
+
+  
 }
 
 function populateControls() {
@@ -188,16 +208,15 @@ function update() {
   for (const comp of Object.keys(element.components)) hitzones[comp] = parseNonNegative($(`hz-${comp}`));
   const applyQuickReload = fullBurstBox.checked ? false : quickReloadBox.checked;
   const finalValues = calculateFinalHitDamage(eleValues.components, applyQuickReload, hitzones, parseNonNegative(defenseEl));
-
+ 
   renderElementalValues(eleValues);
   renderFinalPerHitDamage(finalValues);
-
 }
 
 elementSel.addEventListener("change", () => { renderXattackUp(); renderHitzones(); update(); });
 defenseEl.addEventListener("input", update);
 weaponEl.addEventListener("input", update);
-for (const el of [shellTypeSel, shellLevelSel, gRankBox, fullBurstBox, quickReloadBox]) el.addEventListener("change", update);
+for (const el of [shellTypeSel, shellLevelSel, gRankBox, fullBurstBox, quickReloadBox, shellCount]) el.addEventListener("change", update);
 sigils.addEventListener("input", update);
 
 populateControls();

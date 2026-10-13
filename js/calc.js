@@ -85,3 +85,25 @@ export function calculateFinalHitDamage(components, quickReload, hitzones, defen
   const combinedFinal = Math.max(floor((combinedSum + 1) * defense),1);
   return { perComp: perComp, sum, final: final, combinedFinal: combinedFinal };
 }
+
+/**
+ * @param {{ perComp: number, sum: number, final: number, combinedFinal: number }} damageValues 
+ * @param {number} shellCount                              
+ */
+export function getPerShellDamage(damageValues, shellCount) {
+  if (shellCount > 8 || shellCount < 1) {
+    return [];
+  }
+
+  if (shellCount < 5) {
+    return Array(shellCount).fill(damageValues.final);
+  }  
+
+  const combShells = shellCount - 4;
+  const normShells = 4 - combShells;
+  return [
+    ...Array(normShells).fill(damageValues.final),
+    ...Array(combShells).fill(damageValues.combinedFinal)
+  ];
+  
+}
