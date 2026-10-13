@@ -102,15 +102,18 @@ function renderElementalValues(r) {
   const ul = document.createElement("ul");
   const isCombo = r.components.length > 1;
   for (const p of r.components) {
+    //ElementName[ ×ComboMod] · internal InternalElement[ · transcend]
     const li = document.createElement("li");
     const name = document.createElement("span");
-    name.textContent = `${p.element} `;
+    name.textContent = `${p.element}`;
     const small = document.createElement("small");
-    const comboText = `×${fmtMultipliers(p.comboMod)}`
+    const comboText = ` ×${fmtMultipliers(p.comboMod)}`
     small.textContent = `${isCombo ? comboText : ""} · internal ${p.internal}${p.transcend > 1 ? " · transcend" : ""}`;
     name.appendChild(small);
     const val = document.createElement("b");
-    val.textContent = `${fmt(p.value)} ${fullBurstBox.checked ? `(${fmt(p.combinedValue)})` : ""}`;
+    val.textContent = fullBurstBox.checked
+      ? `${fmt(p.value)} (${fmt(p.combinedValue)})`
+      : fmt(p.value);
     li.append(name, val);
     ul.appendChild(li);
   }
@@ -124,7 +127,9 @@ function renderPerHitElementalComponents(damageValues) {
     const name = document.createElement("span");
     name.textContent = `${p.element} `;
     const val = document.createElement("b");
-    val.textContent = `${fmt(p.value)} ${fullBurstBox.checked ? `(${fmt(p.combinedValue)})` : ""}`;
+    val.textContent = fullBurstBox.checked
+      ? `${fmt(p.value)} (${fmt(p.combinedValue)})`
+      : fmt(p.value);
     li.append(name, val);
     ul.appendChild(li);
   }
