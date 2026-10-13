@@ -117,11 +117,9 @@ function renderElementalValues(r) {
   results.appendChild(ul);
 }
 
-function renderFinalPerHitDamage(f) {
-  finalResults.replaceChildren();
-
+function renderPerHitElementalComponents(damageValues) {
   const ul = document.createElement("ul");
-  for (const p of f.perComp) {
+  for (const p of damageValues.perComp) {
     const li = document.createElement("li");
     const name = document.createElement("span");
     name.textContent = `${p.element} `;
@@ -131,34 +129,37 @@ function renderFinalPerHitDamage(f) {
     ul.appendChild(li);
   }
   finalResults.appendChild(ul);
+}
 
+function renderPerHitDamage(damageValues, perShellDamage) {
   const ft = document.createElement("div");
   ft.className = "final-total";
   const fl = document.createElement("span");
-  fl.textContent = "Damage per elemental hit";
-
-  if(fullBurstBox.checked) {
+  fl.textContent = "Total damage";
+  if (fullBurstBox.checked) {
     const ul = document.createElement("ul");
-    const perShellDamage = getPerShellDamage(f, parseNonNegative(shellCount,true));
     for (let i = 0; i < perShellDamage.length; i++) {
       const li = document.createElement("li");
       const name = document.createElement("span");
-      name.textContent = `Hit ${i+1}`;
+      name.textContent = `Hit ${i + 1}`;
       const val = document.createElement("b");
       val.textContent = `${perShellDamage[i]}`;
       li.append(name, val);
       ul.appendChild(li);
       ft.append(fl, ul);
-    } 
+    }
   }
-  else {
-    const fn = document.createElement("strong");
-    fn.textContent = `${fmt(f.final)} ${fullBurstBox.checked ? `(${fmt(f.combinedFinal)})` : ""}`;
-    ft.append(fl, fn);    
-  }
+  const totalDamage = fullBurstBox.checked ? perShellDamage.reduce((a, p) => a + p, 0) : damageValues.final;
+  const fn = document.createElement("strong");
+  fn.textContent = `${fmt(totalDamage)}`;
+  ft.append(fl, fn);
   finalResults.appendChild(ft);
+}
 
-  
+function renderDamageResults(damageValues, perShellDamage) {
+  finalResults.replaceChildren();
+  renderPerHitElementalComponents(damageValues);
+  renderPerHitDamage(damageValues, perShellDamage);
 }
 
 function populateControls() {
@@ -189,6 +190,7 @@ function update() {
   penaltyOut.textContent = fmtMultipliers(pen);
 
   const mul = (id) => Number($(`mul-${id}`).value);
+
   const eleValues = calculateElementalValues({
     weaponElement: parseNonNegative(weaponEl, true),
     sigils: parseNonNegative(sigils, true),
@@ -207,10 +209,10 @@ function update() {
   const hitzones = {};
   for (const comp of Object.keys(element.components)) hitzones[comp] = parseNonNegative($(`hz-${comp}`));
   const applyQuickReload = fullBurstBox.checked ? false : quickReloadBox.checked;
-  const finalValues = calculateFinalHitDamage(eleValues.components, applyQuickReload, hitzones, parseNonNegative(defenseEl));
- 
+  const damageValues = calculateFinalHitDamage(eleValues.components, applyQuickReload, hitzones, parseNonNegative(defenseEl));
+  const perShellDamage = getPerShellDamage(damageValues, parseNonNegative(shellCount, true));
   renderElementalValues(eleValues);
-  renderFinalPerHitDamage(finalValues);
+  renderDamageResults(damageValues, perShellDamage);
 }
 
 elementSel.addEventListener("change", () => { renderXattackUp(); renderHitzones(); update(); });

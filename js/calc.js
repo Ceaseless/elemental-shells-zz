@@ -33,15 +33,17 @@ export function calculateElementalValues(i) {
     : names[0];
  
   const components = Object.entries(i.element.components).map(([element, comboMod]) => {
+    
     const xau = i.elementAttackUp[element] ?? 1;
- 
+    
     let internal = floor((i.weaponElement + i.sigils) * comboMod);
     for (const m of [xau, i.drug, i.tenran, i.elemAttack, i.furious, i.zSigil]) {
       internal = floor(internal * m);
     }
- 
+        
     // Furious 1 bug -> Game loads 1.04 instead of 1.05
-    const multipliers = xau * i.drug * i.tenran * i.elemAttack * i.furious === 1.05 ? 1.04 : i.furious; 
+    const multipliers = xau * i.drug * i.tenran * i.elemAttack * (i.furious === 1.05 ? 1.04 : i.furious); 
+
     const transcended = element === transcendTarget;
     const transcend = transcended ? i.transcend : 1;
 
