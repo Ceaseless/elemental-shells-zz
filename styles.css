@@ -1,28 +1,35 @@
   :root {
       --bg: #eef1f3;
       --panel: #ffffff;
+      --header: #1c2630;
       --ink: #1c2630;
       --muted: #5d6b78;
       --line: #cdd5db;
       --accent: #1f6f8b;
       --accent-ink: #ffffff;
-      font-family: "IBM Plex Sans", "Trebuchet MS", "Segoe UI", system-ui, sans-serif;
+      --highlight: #175064;
+      color-scheme: light;
+
   }
 
   @media (prefers-color-scheme: dark) {
       :root {
-          --bg: #14191e;
-          --panel: #1d252c;
-          --ink: #e6ecf0;
-          --muted: #94a3af;
+          --bg: #161923;
+          --panel: #262c3d;
+          --header: #dddef0;
+          --ink: #bcbdd0;
+          --muted: #a0b0bd;
           --line: #33414c;
           --accent: #5fb4d0;
           --accent-ink: #0d161b;
+          --highlight: #b1dfee;
+          color-scheme: dark;
       }
   }
 
   * {
       box-sizing: border-box;
+      font-family: "IBM Plex Sans", "Trebuchet MS", "Segoe UI", system-ui, sans-serif;
   }
 
   body {
@@ -75,6 +82,7 @@
   .panel h2 {
       font-size: 1rem;
       margin: 0 0 12px;
+      color: var(--header);
   }
 
   .panel h3 {
@@ -164,7 +172,7 @@
   .final-total strong {
       font-size: 2.2rem;
       line-height: 1.1;
-      color: var(--accent);
+      color: var(--highlight);
   }
 
   .check {
@@ -188,31 +196,22 @@
       color: var(--ink);
   }
 
-  .result-panel {
-      background: var(--accent);
-      border-color: var(--accent);
-      color: var(--accent-ink);
-  }
 
-  .result-panel h2 {
-      color: inherit;
-  }
-
-  #results ul {
+  #elementResults ul {
       list-style: none;
       margin: 0 0 12px;
       padding: 0;
   }
 
-  #results li {
+  #elementResults li {
       display: flex;
       justify-content: space-between;
       gap: 8px;
       padding: 6px 0;
-      border-bottom: 1px solid color-mix(in srgb, var(--accent-ink) 30%, transparent);
+      border-bottom: 1px solid var(--line);
   }
 
-  #results small {
+  #elementResults small {
       opacity: .8;
   }
 
@@ -227,7 +226,7 @@
   }
 
   #notes ul {
-    list-style: square;
-    margin: 10px 0 10px 16px;
-    padding: 0;
+      list-style: square;
+      margin: 10px 0 10px 16px;
+      padding: 0;
   }

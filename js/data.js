@@ -97,6 +97,19 @@ const PENALTY = {
   Wide: [0.8, 0.7],
 };
 
+// Fixed hit data
+const RAW_MOD = {
+  Normal: 0.11,
+  Long: 0.1,
+  Wide: 0.09,
+}
+
+const FIXED_DAMAGE = {
+  Normal: [10, 14, 18, 21, 24, 39, 45, 51, 59],
+  Long: [14, 20, 25, 29, 32, 50, 58, 64, 73],
+  Wide: [19, 26, 34, 38, 41, 64, 71, 80, 92],
+}
+
 export function getZSigilMod(zSigil) {
   return 1.3 + 0.1 * zSigil;
 }

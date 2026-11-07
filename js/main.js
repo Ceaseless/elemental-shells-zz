@@ -44,7 +44,7 @@ const sigils = $("sigils");
 const elementSel = $("element");
 const xauBox = $("xau");
 const multBox = $("multipliers");
-const results = $("results");
+const elementResults = $("elementResults");
 const shellCount = $("shellCount");
 const defenseEl = $("defense");
 const hitzoneBox = $("hitzones");
@@ -98,7 +98,7 @@ function renderHitzones() {
 }
 
 function renderElementalValues(r) {
-  results.replaceChildren();
+  elementResults.replaceChildren();
   const ul = document.createElement("ul");
   const isCombo = r.components.length > 1;
   for (const p of r.components) {
@@ -117,7 +117,7 @@ function renderElementalValues(r) {
     li.append(name, val);
     ul.appendChild(li);
   }
-  results.appendChild(ul);
+  elementResults.appendChild(ul);
 }
 
 function renderPerHitElementalComponents(damageValues) {
