@@ -75,7 +75,6 @@
   .panel {
       background: var(--panel);
       border: 1px solid var(--line);
-      /* border-radius: 6px; */
       padding: 16px;
   }
 
@@ -117,7 +116,6 @@
       color: var(--ink);
       background: var(--bg);
       border: 1px solid var(--line);
-      border-radius: 4px;
       padding: 7px 8px;
       width: 100%;
   }
@@ -142,17 +140,17 @@
       margin-top: 12px;
   }
 
-  #finalResults {
+  #damageResults {
       margin-top: 14px;
   }
 
-  #finalResults ul {
+  #damageResults ul {
       list-style: none;
       margin: 0 0 10px;
       padding: 0;
   }
 
-  #finalResults li {
+  #damageResults li {
       display: flex;
       justify-content: space-between;
       gap: 8px;
@@ -160,7 +158,7 @@
       border-bottom: 1px solid var(--line);
   }
 
-  #finalResults small {
+  #damageResults small {
       color: var(--muted);
   }
 
@@ -213,16 +211,6 @@
 
   #elementResults small {
       opacity: .8;
-  }
-
-  .total {
-      display: flex;
-      flex-direction: column;
-  }
-
-  .total strong {
-      font-size: 2.6rem;
-      line-height: 1.1;
   }
 
   #notes ul {

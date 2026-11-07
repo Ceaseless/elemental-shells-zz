@@ -19,7 +19,7 @@ const floor = (x) => Math.floor(x + 1e-9);
  * 
  * @param {{
  *   weaponElement: number, sigils: number,
- *   element: import("../data/data.js").ElementDef,
+ *   element: import("./data.js").ElementDef,
  *   elementAttackUp: Record<string, number>,
  *   drug: number, tenran: number, elemAttack: number, furious: number,
  *   zSigil: number, transcend: number, shellMod: number, penalty: number,

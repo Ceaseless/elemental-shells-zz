@@ -55,6 +55,7 @@ const fullBurstBox = $("fullBurst");
 const quickReloadBox = $("quickReload");
 const shellModOut = $("shellModOut");
 const penaltyOut = $("penaltyOut");
+const damageResults = $("damageResults");
 
 // Store per-component X Attack Up and hitzone values
 const xauValues = {};
@@ -133,7 +134,7 @@ function renderPerHitElementalComponents(damageValues) {
     li.append(name, val);
     ul.appendChild(li);
   }
-  finalResults.appendChild(ul);
+  damageResults.appendChild(ul);
 }
 
 function renderPerHitDamage(damageValues, perShellDamage) {
@@ -158,11 +159,11 @@ function renderPerHitDamage(damageValues, perShellDamage) {
   const fn = document.createElement("strong");
   fn.textContent = `${fmt(totalDamage)}`;
   ft.append(fl, fn);
-  finalResults.appendChild(ft);
+  damageResults.appendChild(ft);
 }
 
 function renderDamageResults(damageValues, perShellDamage) {
-  finalResults.replaceChildren();
+  damageResults.replaceChildren();
   renderPerHitElementalComponents(damageValues);
   renderPerHitDamage(damageValues, perShellDamage);
 }

@@ -89,6 +89,13 @@ const SHELL_MOD = {
   Wide: [5.5, 5.63, 5.76, 5.89, 6.02, 6.15, 6.28, 6.41, 6.54],
 };
 
+// Max was Level 6. Levels 7-9 are extrapolated
+const SHELL_MOD_FW5 = {
+  Normal: [5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9],
+  Long: [7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11],
+  Wide: [9, 9.5, 10, 10.5, 11, 11.5, 12, 12.5, 13],
+};
+
 // [non-G quest, G-Rank quest]
 // Nerf from G1 and Full-Burst penalty
 const PENALTY = {
