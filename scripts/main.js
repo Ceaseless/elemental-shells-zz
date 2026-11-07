@@ -2,7 +2,7 @@ import { calculateElementalValues, calculateFinalHitDamage, getPerShellDamage } 
 import {
   ALL_ELEMENTS, COMBOS, SINGLES, MULTIPLIERS, X_ATTACK_UP_OPTIONS,
   SHELL_TYPES, SHELL_LEVELS, getShellMod, getPenalty,
-} from "./data.js";
+} from "../data/data.js";
 
 // querySelector snippet
 const $ = (id) => {
