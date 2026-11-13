@@ -82,7 +82,12 @@ export const SHELL_TYPES = ["Normal", "Long", "Wide"];
 export const SHELL_LEVELS = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 // Taken from https://web.archive.org/web/20191009194248/http://bake2sa.blog.fc2.com/blog-entry-14.html
-// Verified via memory inspection
+// Verified via memory inspection (n = shell level - 1)
+// mhdat: +0xDC29E0 + 0x8 + n*0x10 (All values, Normal -> Wide -> Long)
+// Normal: +0xDC29E0 + 0x8 + n*0x30
+// Wide: +0xDC29E0 + 0x18 + n*0x30
+// Long: +0xDC29E0 + 0x28 + n*0x30
+// Table Pointer: +0x5b4609c + 0x678
 const SHELL_MOD = {
   Normal: [3, 3.13, 3.26, 3.39, 3.52, 3.65, 3.78, 3.91, 4.04],
   Long: [5, 5.13, 5.26, 5.39, 5.52, 5.65, 5.78, 5.91, 6.04],
@@ -98,6 +103,9 @@ const SHELL_MOD_FW5 = {
 
 // [non-G quest, G-Rank quest]
 // Nerf from G1 and Full-Burst penalty
+// mhfdat: +0xDC2960
+// Table Pointer: +0x5b4609c + 0x684 
+// Stride: ?
 const PENALTY = {
   Normal: [0.9, 0.8],
   Long: [0.7, 0.6],
